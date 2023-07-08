@@ -27,7 +27,7 @@ public class SubTask extends Task {
                     ", status='" + status + '\'' +
                     '}';
         } else {
-            return "";
+            return " ";
         }
     }
 }
