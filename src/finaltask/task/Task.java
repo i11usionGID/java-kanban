@@ -1,15 +1,16 @@
 package finaltask.task;
 
+import finaltask.TaskStatus.TaskStatus;
+
 public class Task {
     protected String taskName;
     protected String description;
     protected int ID;
-    protected String status;
+    protected TaskStatus status = TaskStatus.NEW;
 
     public Task(String taskName, String description) {
         this.taskName = taskName;
         this.description = description;
-        this.status = "NEW";
     }
 
     public String getTaskName() {
@@ -30,10 +31,10 @@ public class Task {
     public void setID(int ID) {
         this.ID = ID;
     }
-    public String getStatus() {
+    public TaskStatus getStatus() {
         return status;
     }
-    public void setStatus(String status) {
+    public void setStatus(TaskStatus status) {
         this.status = status;
     }
 

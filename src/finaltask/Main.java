@@ -1,13 +1,18 @@
 package finaltask;
+import finaltask.TaskStatus.TaskStatus;
+import finaltask.manager.InMemoryTaskManager;
+import finaltask.manager.Managers;
 import finaltask.manager.TaskManager;
 import finaltask.task.Task;
 import finaltask.task.Epic;
 import finaltask.task.SubTask;
 
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
-        TaskManager taskManager = new TaskManager();
+        TaskManager taskManager = Managers.getDefault();
 
         Task task1 = new Task("задача 1", "описание 1-ой задачи");
         Task task2 = new Task("задача 2", "описание 2-ой задачи");
@@ -36,13 +41,13 @@ public class Main {
         System.out.println(taskManager.getAllEpics());
         System.out.println(taskManager.getAllSubTasks());
 
-        subTaskForEpicTask12.setStatus("IN_PROGRESS");
+        subTaskForEpicTask12.setStatus(TaskStatus.IN_PROGRESS);
         taskManager.updateSubTask(subTaskForEpicTask12);
 
         System.out.println(epicTask1);
 
-        subTaskForEpicTask11.setStatus("DONE");
-        subTaskForEpicTask12.setStatus("DONE");
+        subTaskForEpicTask11.setStatus(TaskStatus.DONE);
+        subTaskForEpicTask12.setStatus(TaskStatus.DONE);
         taskManager.updateSubTask(subTaskForEpicTask11);
         taskManager.updateSubTask(subTaskForEpicTask12);
 
@@ -54,5 +59,13 @@ public class Main {
         System.out.println(taskManager.getAllTasks());
         System.out.println(taskManager.getAllEpics());
         System.out.println(taskManager.getAllSubTasks());
+
+        taskManager.getTaskById(1);
+        taskManager.getTaskById(1);
+        taskManager.getTaskById(1);
+        taskManager.getTaskById(1);
+
+        List tasks = taskManager.getHistory();
+        System.out.println(tasks);
     }
 }
