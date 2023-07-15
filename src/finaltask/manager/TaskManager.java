@@ -82,7 +82,7 @@ public class TaskManager {
             return;
         }
         subTaskMap.put(subTask.getID(), subTask);
-        checkEpicsStatusBySubtask(subTask);
+        checkEpicsStatusBySubtask(subTask.getEpicId());
     }
     public void updateEpic(Epic epic){
         Epic epicId = epicMap.get(epic.getID());
@@ -95,9 +95,10 @@ public class TaskManager {
         taskMap.remove(id);
     }
     public void deleteSubTaskById(int id){
+        int epicId = subTaskMap.get(id).getEpicId();
         epicMap.get(subTaskMap.get(id).getEpicId()).getSubTaskIdsArrayList().remove(id);
         subTaskMap.remove(id);
-        checkEpicsStatusBySubtask(subTaskMap.get(id));
+        checkEpicsStatusBySubtask(epicId);
     }
     public void deleteEpicById(int epicId){
         for(Integer key: subTaskMap.keySet()){
@@ -119,31 +120,21 @@ public class TaskManager {
     private int generateId(){
         return ++generatedID;
     }
-    private void checkEpicsStatusBySubtask(SubTask subTask){
-        for(Integer keyOfEpics:epicMap.keySet()) {
-            for (Integer keyOfSubTasks : subTaskMap.keySet()) {
-                if(subTaskMap.get(keyOfSubTasks).getEpicId()==epicMap.get(keyOfEpics).getID()){
-                    if(subTaskMap.get(keyOfSubTasks).getStatus().equals("IN_PROGRESS")){
-                        epicMap.get(subTaskMap.get(keyOfSubTasks).getEpicId()).setStatus("IN_PROGRESS");
-                    }
-                }
+    private void checkEpicsStatusBySubtask(int epicId){
+        for(Integer ID:epicMap.get(epicId).getSubTaskIdsArrayList()){
+            if(subTaskMap.get(ID).getStatus().equals("IN_PROGRESS")){
+                epicMap.get(epicId).setStatus("IN_PROGRESS");
             }
         }
-        if(subTask.getStatus().equals("DONE")){
-            int doneCounter=0;
-            int subTasksCounter=epicMap.get(subTask.getEpicId()).getSubTaskIdsArrayList().size();
-            for(Integer keyOfEpics:epicMap.keySet()){
-                for(Integer keyOfSubTasks:subTaskMap.keySet()){
-                    if(subTaskMap.get(keyOfSubTasks).getEpicId()==epicMap.get(keyOfEpics).getID()){
-                        if(subTaskMap.get(keyOfSubTasks).getStatus().equals("DONE")){
-                            doneCounter++;
-                        }
-                    }
-                }
+        int doneCounter=0;
+        int subTasksCounter=epicMap.get(epicId).getSubTaskIdsArrayList().size();
+        for(Integer ID:epicMap.get(epicId).getSubTaskIdsArrayList()) {
+            if(subTaskMap.get(ID).getStatus().equals("DONE")){
+                doneCounter++;
             }
-            if(doneCounter==subTasksCounter){
-                epicMap.get(subTask.getEpicId()).setStatus("DONE");
-            }
+        }
+        if(doneCounter==subTasksCounter){
+            epicMap.get(epicId).setStatus("DONE");
         }
     }
 }
