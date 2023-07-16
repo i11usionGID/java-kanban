@@ -1,6 +1,6 @@
 package finaltask.manager;
-import finaltask.task.Task;
 
+import finaltask.task.Task;
 import java.util.List;
 
 public interface HistoryManager {

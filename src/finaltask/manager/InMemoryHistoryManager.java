@@ -11,7 +11,7 @@ public class InMemoryHistoryManager implements HistoryManager{
     private final LinkedList<Task> history = new LinkedList<>();
     @Override
     public List<Task> getHistory() {
-        return history;
+        return List.copyOf(history);
     }
 
     @Override
@@ -19,11 +19,9 @@ public class InMemoryHistoryManager implements HistoryManager{
         if(task==null){
             return;
         }
-        if(history.size()<HISTORY_SIZE){
-            history.add(task);
-        } else {
+        if(history.size()>=HISTORY_SIZE){
             history.removeFirst();
-            history.add(task);
         }
+        history.add(task);
     }
 }

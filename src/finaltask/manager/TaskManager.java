@@ -2,16 +2,15 @@ package finaltask.manager;
 import finaltask.task.Epic;
 import finaltask.task.SubTask;
 import finaltask.task.Task;
-import java.util.ArrayList;
-import java.util.LinkedList;
+
 import java.util.List;
 
 public interface TaskManager {
 
-    public ArrayList<Task> getAllTasks();
-    public ArrayList<SubTask> getAllSubTasks();
+    public List<Task> getAllTasks();
+    public List<SubTask> getAllSubTasks();
 
-    public ArrayList<Epic> getAllEpics();
+    public List<Epic> getAllEpics();
     public void deleteAllTasks();
     public void deleteAllSubTasks();
     public void deleteAllEpics();
@@ -27,6 +26,6 @@ public interface TaskManager {
     public void deleteTaskById(int id);
     public void deleteSubTaskById(int id);
     public void deleteEpicById(int epicId);
-    public ArrayList<SubTask> getAllSubTasksByEpic(int idOfEpic);
+    public List<SubTask> getAllSubTasksByEpic(int idOfEpic);
     public List<Task> getHistory();
 }

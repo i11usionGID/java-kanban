@@ -12,23 +12,21 @@ import java.util.List;
 public class InMemoryTaskManager implements TaskManager {
     private int generatedID = 0;
 
-    HashMap<Integer, Task> taskMap = new HashMap<>();
-    HashMap <Integer, Epic> epicMap = new HashMap<>();
-    HashMap <Integer, SubTask> subTaskMap = new HashMap<>();
-    ArrayList<Task> memory = new ArrayList<>();
-
+    private HashMap<Integer, Task> taskMap = new HashMap<>();
+    private HashMap <Integer, Epic> epicMap = new HashMap<>();
+    private HashMap <Integer, SubTask> subTaskMap = new HashMap<>();
     private final HistoryManager historyManager = Managers.getHistoryDefault();
 
     @Override
-    public ArrayList<Task> getAllTasks(){
+    public List<Task> getAllTasks(){
         return new ArrayList(taskMap.values());
     }
     @Override
-    public ArrayList<SubTask> getAllSubTasks(){
+    public List<SubTask> getAllSubTasks(){
         return new ArrayList(subTaskMap.values());
     }
     @Override
-    public ArrayList<Epic> getAllEpics(){
+    public List<Epic> getAllEpics(){
         return new ArrayList(epicMap.values());
     }
     @Override
@@ -139,7 +137,7 @@ public class InMemoryTaskManager implements TaskManager {
         epicMap.remove(epicId);
     }
     @Override
-    public ArrayList<SubTask> getAllSubTasksByEpic(int idOfEpic){
+    public List<SubTask> getAllSubTasksByEpic(int idOfEpic){
         ArrayList<SubTask> subTasks = new ArrayList<>();
         for(Integer key:subTaskMap.keySet()){
             if(subTaskMap.get(key).getEpicId()==idOfEpic){
