@@ -36,35 +36,6 @@ public class Main {
                 "описание подзад. 1", epicTask2.getID());
         subTaskForEpicTask2 = taskManager.createSubTask(subTaskForEpicTask2);
 
-        System.out.println(taskManager.getAllTasks());
-        System.out.println(taskManager.getAllEpics());
-        System.out.println(taskManager.getAllSubTasks());
 
-        subTaskForEpicTask12.setStatus(TaskStatus.IN_PROGRESS);
-        taskManager.updateSubTask(subTaskForEpicTask12);
-
-        System.out.println(epicTask1);
-
-        subTaskForEpicTask11.setStatus(TaskStatus.DONE);
-        subTaskForEpicTask12.setStatus(TaskStatus.DONE);
-        taskManager.updateSubTask(subTaskForEpicTask11);
-        taskManager.updateSubTask(subTaskForEpicTask12);
-
-        System.out.println(epicTask1);
-
-        taskManager.deleteTaskById(task2.getID());
-        taskManager.deleteEpicById(epicTask1.getID());
-
-        System.out.println(taskManager.getAllTasks());
-        System.out.println(taskManager.getAllEpics());
-        System.out.println(taskManager.getAllSubTasks());
-
-        taskManager.getTaskById(1);
-        taskManager.getTaskById(1);
-        taskManager.getTaskById(1);
-        taskManager.getTaskById(1);
-
-        List tasks = taskManager.getHistory();
-        System.out.println(tasks);
     }
 }
