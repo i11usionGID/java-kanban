@@ -36,6 +36,17 @@ public class Main {
                 "описание подзад. 1", epicTask2.getID());
         subTaskForEpicTask2 = taskManager.createSubTask(subTaskForEpicTask2);
 
+        System.out.println(taskManager.getAllTasks());
+        System.out.println(taskManager.getAllEpics());
+        System.out.println(taskManager.getAllSubTasks());
 
+        taskManager.getTaskById(1);
+        taskManager.getTaskById(1);
+        taskManager.getAllSubTasks();
+        taskManager.getAllEpics();
+
+        System.out.println(taskManager.getHistory());
+        taskManager.deleteAllEpics();
+        System.out.println(taskManager.getHistory());
     }
 }

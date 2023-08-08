@@ -31,10 +31,10 @@ public class InMemoryHistoryManager implements HistoryManager{
 
     @Override
     public void addTask(Task task) {
-        Node node = new Node(task);
         if(map.containsKey(task.getID())){
             removeNode(map.get(task.getID()));
         }
+        Node node = new Node(task);
         if (first != null) {
             last.next = node;
             node.prev = last;
@@ -54,17 +54,17 @@ public class InMemoryHistoryManager implements HistoryManager{
     }
     public void removeNode(Node node){
         Node current = node;
-        if(node == first && node == last){
+        if(first == last){
             first = null;
             last = null;
         }else if(node == first){
             first = current.next;
-            current.next = null;
             current.next.prev = null;
+            current.next = null;
         } else if(node == last){
             last = current.prev;
-            current.prev = null;
             current.prev.next = null;
+            current.prev = null;
         } else {
             current.next.prev = current.prev;
             current.prev.next = current.next;
