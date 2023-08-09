@@ -21,21 +21,21 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public List<Task> getAllTasks(){
         for(Task tasks:taskMap.values()){
-            historyManager.addTask(tasks);
+            historyManager.add(tasks);
         }
         return new ArrayList(taskMap.values());
     }
     @Override
     public List<SubTask> getAllSubTasks(){
         for(Task subTasks: subTaskMap.values()){
-            historyManager.addTask(subTasks);
+            historyManager.add(subTasks);
         }
         return new ArrayList(subTaskMap.values());
     }
     @Override
     public List<Epic> getAllEpics(){
         for(Task epics:epicMap.values()){
-            historyManager.addTask(epics);
+            historyManager.add(epics);
         }
         return new ArrayList(epicMap.values());
     }
@@ -68,19 +68,19 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public Task getTaskById(int id){
         Task task = taskMap.get(id);
-        historyManager.addTask(task);
+        historyManager.add(task);
         return task;
     }
     @Override
     public SubTask getSubTaskById(int id){
         SubTask task = subTaskMap.get(id);
-        historyManager.addTask(task);
+        historyManager.add(task);
         return task;
     }
     @Override
     public Epic getEpicById(int epicId){
         Epic task = epicMap.get(epicId);
-        historyManager.addTask(task);
+        historyManager.add(task);
         return task;
     }
     @Override
@@ -165,7 +165,7 @@ public class InMemoryTaskManager implements TaskManager {
         for(Integer key:subTaskMap.keySet()){
             if(subTaskMap.get(key).getEpicId()==idOfEpic){
                 subTasks.add(subTaskMap.get(key));
-                historyManager.addTask(subTaskMap.get(key));
+                historyManager.add(subTaskMap.get(key));
             }
         }
         return subTasks;

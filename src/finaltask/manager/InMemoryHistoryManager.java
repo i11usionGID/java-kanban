@@ -10,17 +10,13 @@ import java.util.Map;
 
 public class InMemoryHistoryManager implements HistoryManager{
 
-    private final LinkedList<Task> history = new LinkedList<>();
-    Node first;
-    Node last;
-    Map<Integer, Node> map = new HashMap<>();
+    private Node first;
+    private Node last;
+    private Map<Integer, Node> map = new HashMap<>();
 
     @Override
     public List<Task> getHistory() {
         List <Task> list = new ArrayList<>();
-        if (first == null){
-            return list;
-        }
         Node current = first;
         while(current != null){
             list.add(current.getValue());
@@ -30,7 +26,7 @@ public class InMemoryHistoryManager implements HistoryManager{
     }
 
     @Override
-    public void addTask(Task task) {
+    public void add(Task task) {
         if(map.containsKey(task.getID())){
             removeNode(map.get(task.getID()));
         }
@@ -52,7 +48,7 @@ public class InMemoryHistoryManager implements HistoryManager{
         map.remove(id);
 
     }
-    public void removeNode(Node node){
+    private void removeNode(Node node){
         Node current = node;
         if(first == last){
             first = null;
@@ -74,7 +70,7 @@ public class InMemoryHistoryManager implements HistoryManager{
 
     }
 
-    public class Node{
+    private static class Node{
 
         Task value;
         Node next;
