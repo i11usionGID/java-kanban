@@ -6,11 +6,18 @@ public class Task {
     protected String taskName;
     protected String description;
     protected int ID;
-    protected TaskStatus status = TaskStatus.NEW;
+    protected TaskStatus status;
+    protected  TaskType type;
+
+    public TaskType getType() {
+        return type;
+    }
 
     public Task(String taskName, String description) {
         this.taskName = taskName;
         this.description = description;
+        this.type = TaskType.TASK;
+        this.status = TaskStatus.NEW;
     }
 
     public String getTaskName() {

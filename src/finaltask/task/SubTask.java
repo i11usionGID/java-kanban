@@ -3,9 +3,15 @@ package finaltask.task;
 public class SubTask extends Task {
     private int epicId;
 
+    @Override
+    public TaskType getType() {
+        return super.getType();
+    }
+
     public SubTask(String taskName, String description, int epicId) {
         super(taskName, description);
         this.epicId = epicId;
+        this.type=TaskType.SUBTASK;
     }
 
     public int getEpicId() {
