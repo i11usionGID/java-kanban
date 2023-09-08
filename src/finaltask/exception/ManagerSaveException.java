@@ -1,6 +1,6 @@
-package finaltask.manager.file;
+package finaltask.exception;
 
-public class ManagerSaveException extends Throwable {
+public class ManagerSaveException extends RuntimeException {
 
     public ManagerSaveException() {
         super();

@@ -1,7 +1,7 @@
 package finaltask.manager.file;
 
 
-import finaltask.TaskStatus.TaskStatus;
+import finaltask.exception.ManagerSaveException;
 import finaltask.manager.InMemoryTaskManager;
 import finaltask.task.Epic;
 import finaltask.task.SubTask;
@@ -9,9 +9,6 @@ import finaltask.task.Task;
 import finaltask.task.TaskType;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
 
 public class FileBackedTasksManager extends InMemoryTaskManager {
@@ -22,117 +19,56 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         this.file = file;
     }
     @Override
-    public List<Task> getAllTasks() throws ManagerSaveException {
+    public List<Task> getAllTasks(){
         List<Task> tasks = super.getAllTasks();
         save();
         return tasks;
     }
 
     @Override
-    public List<SubTask> getAllSubTasks() throws ManagerSaveException{
+    public List<SubTask> getAllSubTasks(){
         List<SubTask> subTasks = super.getAllSubTasks();
         save();
         return subTasks;
     }
 
     @Override
-    public List<Epic> getAllEpics() throws ManagerSaveException {
+    public List<Epic> getAllEpics(){
         List<Epic> epics =  super.getAllEpics();
         save();
         return epics;
     }
 
     @Override
-    public void deleteAllTasks() throws ManagerSaveException {
-        super.deleteAllTasks();
-    }
-
-    @Override
-    public void deleteAllSubTasks() throws ManagerSaveException{
-        super.deleteAllSubTasks();
-    }
-
-    @Override
-    public void deleteAllEpics() throws ManagerSaveException {
-        super.deleteAllEpics();
-    }
-
-    @Override
-    public Task getTaskById(int id) throws ManagerSaveException {
+    public Task getTaskById(int id){
         Task taskById = super.getTaskById(id);
         save();
         return taskById;
     }
     @Override
-    public SubTask getSubTaskById(int id) throws ManagerSaveException {
+    public SubTask getSubTaskById(int id){
         SubTask subTaskById = super.getSubTaskById(id);
         save();
         return subTaskById;
     }
 
     @Override
-    public Epic getEpicById(int epicId) throws ManagerSaveException{
+    public Epic getEpicById(int epicId){
         Epic epicById = super.getEpicById(epicId);
         save();
         return epicById;
     }
 
-    @Override
-    public Task createTask(Task task) {
-        return super.createTask(task);
-    }
+
 
     @Override
-    public SubTask createSubTask(SubTask subTask) {
-        return super.createSubTask(subTask);
-    }
-
-    @Override
-    public Epic createEpic(Epic epic) {
-        return super.createEpic(epic);
-    }
-
-    @Override
-    public void updateTask(Task task) {
-        super.updateTask(task);
-    }
-
-    @Override
-    public void updateSubTask(SubTask subTask) {
-        super.updateSubTask(subTask);
-    }
-
-    @Override
-    public void updateEpic(Epic epic) {
-        super.updateEpic(epic);
-    }
-
-    @Override
-    public void deleteTaskById(int id) throws ManagerSaveException {
-        super.deleteTaskById(id);
-    }
-
-    @Override
-    public void deleteSubTaskById(int id) throws ManagerSaveException {
-        super.deleteSubTaskById(id);
-    }
-
-    @Override
-    public void deleteEpicById(int epicId) throws ManagerSaveException {
-        super.deleteEpicById(epicId);
-    }
-
-    @Override
-    public List<SubTask> getAllSubTasksByEpic(int idOfEpic) throws ManagerSaveException {
+    public List<SubTask> getAllSubTasksByEpic(int idOfEpic){
         List<SubTask> allSubTasks = super.getAllSubTasksByEpic(idOfEpic);
         save();
         return allSubTasks;
     }
 
-    @Override
-    public List<Task> getHistory() {
-        return super.getHistory();
-    }
+
     public void save() throws ManagerSaveException {
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(file))){
 

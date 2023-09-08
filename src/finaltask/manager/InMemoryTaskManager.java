@@ -1,7 +1,6 @@
 package finaltask.manager;
 
 import finaltask.TaskStatus.TaskStatus;
-import finaltask.manager.file.ManagerSaveException;
 import finaltask.task.Epic;
 import finaltask.task.SubTask;
 import finaltask.task.Task;
@@ -20,35 +19,35 @@ public class InMemoryTaskManager implements TaskManager  {
     protected final HistoryManager historyManager = Managers.getHistoryDefault();
 
     @Override
-    public List<Task> getAllTasks() throws ManagerSaveException{
+    public List<Task> getAllTasks(){
         for(Task tasks:taskMap.values()){
             historyManager.add(tasks);
         }
         return new ArrayList(taskMap.values());
     }
     @Override
-    public List<SubTask> getAllSubTasks() throws ManagerSaveException {
+    public List<SubTask> getAllSubTasks()  {
         for(Task subTasks: subTaskMap.values()){
             historyManager.add(subTasks);
         }
         return new ArrayList(subTaskMap.values());
     }
     @Override
-    public List<Epic> getAllEpics() throws ManagerSaveException {
+    public List<Epic> getAllEpics() {
         for(Task epics:epicMap.values()){
             historyManager.add(epics);
         }
         return new ArrayList(epicMap.values());
     }
     @Override
-    public void deleteAllTasks() throws ManagerSaveException{
+    public void deleteAllTasks() {
         Map<Integer, Task>  temporaryMap = new HashMap<>(taskMap);
         for (Integer tasksId: temporaryMap.keySet()) {
             deleteTaskById(tasksId);
         }
     }
     @Override
-    public void deleteAllSubTasks() throws ManagerSaveException {
+    public void deleteAllSubTasks() {
         Map<Integer, SubTask>  temporaryMap = new HashMap<>(subTaskMap);
         for (Integer subTasksId:temporaryMap.keySet()) {
             deleteSubTaskById(subTasksId);
@@ -59,7 +58,7 @@ public class InMemoryTaskManager implements TaskManager  {
         }
     }
     @Override
-    public void deleteAllEpics() throws ManagerSaveException {
+    public void deleteAllEpics() {
         deleteAllSubTasks();
         Map<Integer, Epic>  temporaryMap = new HashMap<>(epicMap);
         for (Integer EpicsId: temporaryMap.keySet()) {
@@ -67,19 +66,19 @@ public class InMemoryTaskManager implements TaskManager  {
         }
     }
     @Override
-    public Task getTaskById(int id) throws ManagerSaveException {
+    public Task getTaskById(int id){
         Task task = taskMap.get(id);
         historyManager.add(task);
         return task;
     }
     @Override
-    public SubTask getSubTaskById(int id) throws ManagerSaveException {
+    public SubTask getSubTaskById(int id){
         SubTask task = subTaskMap.get(id);
         historyManager.add(task);
         return task;
     }
     @Override
-    public Epic getEpicById(int epicId) throws ManagerSaveException {
+    public Epic getEpicById(int epicId){
         Epic task = epicMap.get(epicId);
         historyManager.add(task);
         return task;
@@ -137,12 +136,12 @@ public class InMemoryTaskManager implements TaskManager  {
         epicMap.put(epic.getID(), epic);
     }
     @Override
-    public void deleteTaskById(int id) throws ManagerSaveException {
+    public void deleteTaskById(int id){
         historyManager.remove(id);
         taskMap.remove(id);
     }
     @Override
-    public void deleteSubTaskById(int id) throws ManagerSaveException {
+    public void deleteSubTaskById(int id){
         int epicId = subTaskMap.get(id).getEpicId();
         epicMap.get(subTaskMap.get(id).getEpicId()).getSubTaskIdsArrayList().remove((Integer) id);
         historyManager.remove(id);
@@ -150,7 +149,7 @@ public class InMemoryTaskManager implements TaskManager  {
         checkEpicsStatusBySubtask(epicId);
     }
     @Override
-    public void deleteEpicById(int epicId) throws ManagerSaveException {
+    public void deleteEpicById(int epicId){
         for(Integer key: subTaskMap.keySet()){
             if (subTaskMap.get(key).getEpicId() == epicId) {
                 historyManager.remove(subTaskMap.get(key).getID());
@@ -161,7 +160,7 @@ public class InMemoryTaskManager implements TaskManager  {
         epicMap.remove(epicId);
     }
     @Override
-    public List<SubTask> getAllSubTasksByEpic(int idOfEpic) throws ManagerSaveException {
+    public List<SubTask> getAllSubTasksByEpic(int idOfEpic){
         ArrayList<SubTask> subTasks = new ArrayList<>();
         for(Integer key:subTaskMap.keySet()){
             if(subTaskMap.get(key).getEpicId()==idOfEpic){

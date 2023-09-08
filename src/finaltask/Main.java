@@ -1,20 +1,21 @@
 package finaltask;
-import finaltask.TaskStatus.TaskStatus;
-import finaltask.manager.Managers;
-import finaltask.manager.TaskManager;
 import finaltask.manager.file.FileBackedTasksManager;
-import finaltask.manager.file.ManagerSaveException;
+import finaltask.exception.ManagerSaveException;
 import finaltask.task.Task;
 import finaltask.task.Epic;
 import finaltask.task.SubTask;
 
 import java.io.File;
-import java.util.List;
+import java.nio.file.Paths;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) throws ManagerSaveException {
-        FileBackedTasksManager fileBackedTasksManager = new FileBackedTasksManager(new File("C:/dev/java-kanban/src/resources/file.csv"));
+        System.out.println("Введите путь к файлу");
+        Scanner scanner = new Scanner(System.in);
+        String file = scanner.nextLine();
+        FileBackedTasksManager fileBackedTasksManager = new FileBackedTasksManager(new File(Paths.get(file).toUri()));
 
         Task task1 = new Task("задача 1", "описание 1-ой задачи");
         Task task2 = new Task("задача 2", "описание 2-ой задачи");
