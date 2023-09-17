@@ -3,6 +3,7 @@ package finaltask.task;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Epic extends Task {
     private ArrayList<Integer> subTaskIds=new ArrayList<>();
@@ -47,6 +48,20 @@ public class Epic extends Task {
         super(taskName, description);
         this.type=TaskType.EPIC;
     }
+
+    public LocalDateTime getEndTime(HashMap<Integer, SubTask> subTaskMap) {
+        LocalDateTime lattestDate = LocalDateTime.of(0, 1, 1, 1, 1);
+        for (Integer id : subTaskIds) {
+            if (subTaskMap.containsKey(id)) {
+                if (subTaskMap.get(id).getEndTime().isAfter(lattestDate)) {
+                    lattestDate = subTaskMap.get(id).getEndTime();
+                }
+            }
+        }
+        return lattestDate;
+    }
+
+
     public void setSubTaskIdInArrayList(int subTaskId){
         subTaskIds.add(subTaskId);
     }

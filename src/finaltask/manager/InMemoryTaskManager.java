@@ -153,6 +153,11 @@ public class InMemoryTaskManager implements TaskManager  {
         }
         epicMap.put(epic.getID(), epic);
     }
+
+    public HashMap<Integer, SubTask> getSubTaskMap() {
+        return subTaskMap;
+    }
+
     @Override
     public void deleteTaskById(int id){
         for(LocalDateTime dateTime: prioritizedTask.keySet()){

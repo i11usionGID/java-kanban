@@ -26,20 +26,9 @@ public class Main {
         Duration duration = Duration.ZERO.plusMinutes(250);
 
         Task task1 = new Task("задача 1", "описание 1-ой задачи", DateTime, duration);
-        Task task2 = new Task("задача 2", "описание 2-ой задачи");
-        Epic epicTask1 = new Epic("глобальная задача 1", "описание глобальной задачи 1");
-        manager1.createEpic(epicTask1);
-        task1 = manager1.createTask(task1);
-        System.out.println(task1.getEndTime());
-        SubTask subTaskForEpicTask11 = new SubTask("подзадача 1 глобальной задачи 1",
-                "описание подзад. 1", epicTask1.getID(), LocalDateTime.of(2021,12,20,10,0), Duration.ZERO.plusMinutes(240));
-        SubTask subTaskForEpicTask12 = new SubTask("подзадача 2 глобальной задачи 1",
-                "описание позад. 2", epicTask1.getID(),  LocalDateTime.of(2023,12,20,10,0), Duration.ZERO.plusMinutes(20));
-
-        manager1.createSubTask(subTaskForEpicTask11);
-        manager1.createSubTask(subTaskForEpicTask12);
-        manager1.deleteAllTasks();
-        System.out.println(manager1.getEpicById(epicTask1.getID()));
+        Task task2 = new Task("задача 2", "описание 2-ой задачи", LocalDateTime.of(2023, 9, 18, 10, 18), Duration.ZERO.plusMinutes(250));
+        manager1.createTask(task1);
+        manager1.createTask(task2);
 /*
         subTaskForEpicTask11 = fileBackedTasksManager.createSubTask(subTaskForEpicTask11);
         subTaskForEpicTask12 = fileBackedTasksManager.createSubTask(subTaskForEpicTask12);

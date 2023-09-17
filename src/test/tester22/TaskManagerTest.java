@@ -73,7 +73,8 @@ public class TaskManagerTest <T extends TaskManager>{
         final NullPointerException exception = Assertions.assertThrows(
                 NullPointerException.class,
                 ()-> taskManager.getTaskById(10));
-        Assertions.assertEquals(null, exception.getMessage(), "Неправильная работа при удалении несуществующей задачи");
+        Assertions.assertEquals(null, exception.getMessage(),
+                "Неправильная работа при удалении несуществующей задачи");
 
 
     }
@@ -84,7 +85,8 @@ public class TaskManagerTest <T extends TaskManager>{
         final NullPointerException exception = Assertions.assertThrows(
                 NullPointerException.class,
                 ()-> taskManager.getSubTaskById(10));
-        Assertions.assertEquals(null, exception.getMessage(), "Неправильная работа при удалении несуществующей задачи");
+        Assertions.assertEquals(null, exception.getMessage(),
+                "Неправильная работа при удалении несуществующей задачи");
     }
     @Test
     public void getEpicById(){
@@ -93,7 +95,8 @@ public class TaskManagerTest <T extends TaskManager>{
         final NullPointerException exception = Assertions.assertThrows(
                 NullPointerException.class,
                 ()-> taskManager.getEpicById(10));
-        Assertions.assertEquals(null, exception.getMessage(), "Неправильная работа при удалении несуществующей задачи");
+        Assertions.assertEquals(null, exception.getMessage(),
+                "Неправильная работа при удалении несуществующей задачи");
     }
 
     @Test
