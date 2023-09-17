@@ -59,7 +59,17 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         return epicById;
     }
 
+    @Override
+    public void deleteSubTaskById(int id) {
+        super.deleteSubTaskById(id);
+        save();
+    }
 
+    @Override
+    public void deleteAllSubTasks() {
+        super.deleteAllSubTasks();
+        save();
+    }
 
     @Override
     public List<SubTask> getAllSubTasksByEpic(int idOfEpic){
