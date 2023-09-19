@@ -1,7 +1,7 @@
-package tester2.memory;
+package tester22.memory;
 
 import finaltask.exception.TaskValidationExeption;
-import tester2.TaskManagerTest;
+import tester22.TaskManagerTest;
 import finaltask.TaskStatus.TaskStatus;
 import finaltask.manager.InMemoryTaskManager;
 import finaltask.task.Epic;
@@ -22,11 +22,7 @@ class InMemoryTaskManagerTest extends TaskManagerTest<InMemoryTaskManager> {
         taskManager = new InMemoryTaskManager();
         init();
     }
-//Добрый день, уважаемый ревьюер! Прошу сразу меня извинить, если в коде не хватает тестов или я выбрал неправильные структуры данных для работы кода
-//Это был пока что самый тяжелый спринт и, возможно, я много где ошибся
-//В ТЗ было не очень много уточнений, поэтому сделал логику программы по большей части на свое усмотрение
-//Прошу указать на все мои ошибки и подсказать более хорошие структуры данных, я обязательно все исправлю! ^^
-    
+
     @Test
     public void sholdBeEndTimeEpic2023_12_20T10_20(){
         Epic epicTask1 = new Epic("глобальная задача 1", "описание глобальной задачи 1");
@@ -89,9 +85,11 @@ class InMemoryTaskManagerTest extends TaskManagerTest<InMemoryTaskManager> {
     public void deleteTaskById(){
         taskManager.deleteTaskById(1);
         Assertions.assertEquals(taskManager.getAllTasks().size(), 1, "Задача не удалилась");
-        taskManager.deleteTaskById(10);
-
-        Assertions.assertEquals(taskManager.getAllTasks().size(), 1, "Задача не удалилась");
+        final NullPointerException exception = Assertions.assertThrows(
+                NullPointerException.class,
+                ()-> taskManager.deleteTaskById(10));
+        Assertions.assertEquals("Неверный id задачи", exception.getMessage(),
+                "Неправильная работа при удалении несуществующей задачи");
     }
 
     @Test
@@ -101,7 +99,7 @@ class InMemoryTaskManagerTest extends TaskManagerTest<InMemoryTaskManager> {
         final NullPointerException exception = Assertions.assertThrows(
                 NullPointerException.class,
                 ()-> taskManager.deleteSubTaskById(10));
-        Assertions.assertEquals(null, exception.getMessage(),
+        Assertions.assertEquals("Неверный id задачи", exception.getMessage(),
                 "Неправильная работа при удалении несуществующей задачи");
     }
     @Test
@@ -111,7 +109,7 @@ class InMemoryTaskManagerTest extends TaskManagerTest<InMemoryTaskManager> {
         final NullPointerException exception = Assertions.assertThrows(
                 NullPointerException.class,
                 ()-> taskManager.deleteEpicById(10));
-        Assertions.assertEquals(null, exception.getMessage(),
+        Assertions.assertEquals("Неверный id задачи", exception.getMessage(),
                 "Неправильная работа при удалении несуществующей задачи");
     }
     @Test

@@ -6,35 +6,10 @@ import java.time.LocalDateTime;
 public class SubTask extends Task {
     private int epicId;
 
-    @Override
-    public TaskType getType() {
-        return super.getType();
-    }
-
     public SubTask(String taskName, String description, int epicId) {
         super(taskName, description);
         this.epicId = epicId;
         this.type=TaskType.SUBTASK;
-    }
-
-    @Override
-    public Duration getDuration() {
-        return super.getDuration();
-    }
-
-    @Override
-    public void setDuration(Duration duration) {
-        super.setDuration(duration);
-    }
-
-    @Override
-    public LocalDateTime getStartTime() {
-        return super.getStartTime();
-    }
-
-    @Override
-    public void setStartTime(LocalDateTime startTime) {
-        super.setStartTime(startTime);
     }
 
     public SubTask(String taskName, String description, int epicId, LocalDateTime startTime, Duration duration) {

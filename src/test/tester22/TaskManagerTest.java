@@ -1,4 +1,4 @@
-package tester2;
+package tester22;
 
 import finaltask.manager.TaskManager;
 import finaltask.task.Epic;
@@ -41,6 +41,15 @@ public class TaskManagerTest <T extends TaskManager>{
         taskManager.createSubTask(subTask21);
         subTask22 = new SubTask("name", "description", 4);
         taskManager.createSubTask(subTask22);
+        taskManager.getTaskById(1);
+        taskManager.getTaskById(2);
+        taskManager.getEpicById(3);
+        taskManager.getEpicById(4);
+        taskManager.getSubTaskById(5);
+        taskManager.getSubTaskById(6);
+        taskManager.getSubTaskById(7);
+        taskManager.getSubTaskById(8);
+
 
 
     }

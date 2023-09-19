@@ -1,4 +1,4 @@
-package tester2.memory;
+package tester22.memory;
 
 import finaltask.manager.InMemoryHistoryManager;
 import finaltask.task.Task;

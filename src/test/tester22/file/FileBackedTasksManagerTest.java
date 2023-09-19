@@ -1,10 +1,10 @@
-package tester2.file;
+package tester22.file;
 
 import finaltask.manager.file.FileBackedTasksManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import tester2.TaskManagerTest;
+import tester22.TaskManagerTest;
 
 import java.io.*;
 import java.time.LocalDateTime;
@@ -44,9 +44,6 @@ class FileBackedTasksManagerTest extends TaskManagerTest<FileBackedTasksManager>
     }
     @Test
     void EpicWithoutSubTasks() throws IOException {
-        taskManager.getAllTasks();
-        taskManager.getAllEpics();
-        taskManager.getAllSubTasks();
         taskManager.deleteAllSubTasks();
         taskManager.save();
         BufferedReader br = new BufferedReader(new FileReader(file));
@@ -56,18 +53,15 @@ class FileBackedTasksManagerTest extends TaskManagerTest<FileBackedTasksManager>
             strings.add(line);
         }
         br.close();
-        Assertions.assertEquals(strings.get(3), "3,EPIC,name,NEW,description,null,null,",
+        Assertions.assertEquals(strings.get(3), "3,EPIC,name,NEW,description,0000-01-01T00:01,PT0S,",
                 "Неправильное сохранение в файл");
-        Assertions.assertEquals(strings.get(4), "4,EPIC,name,NEW,description,null,null,",
+        Assertions.assertEquals(strings.get(4), "4,EPIC,name,NEW,description,0000-01-01T00:01,PT0S,",
                 "Неправильное сохранение в файл");
         Assertions.assertEquals(strings.get(5), "", "Неправильное сохранение в файл");
         Assertions.assertEquals(strings.get(6), "1,2,3,4", "Неправильное сохранение в файл");
     }
     @Test
     void save() throws IOException {
-        taskManager.getAllTasks();
-        taskManager.getAllSubTasks();
-        taskManager.getAllEpics();
         taskManager.save();
         BufferedReader br = new BufferedReader(new FileReader(file));
         List<String> strings = new ArrayList<>();
@@ -76,13 +70,13 @@ class FileBackedTasksManagerTest extends TaskManagerTest<FileBackedTasksManager>
             strings.add(line);
         }
         br.close();
-        Assertions.assertEquals(strings.get(1), "1,TASK,name,NEW,description,"+ LocalDateTime.now() +",PT0S,",
+        Assertions.assertEquals(strings.get(1), "1,TASK,name,NEW,description,"+ LocalDateTime.now().withNano(0) +",PT0S,",
                 "Неправильное сохранение в файл");
         Assertions.assertEquals(strings.get(4), "4,EPIC,name,NEW,description,0000-01-01T00:01,PT0S,",
                 "Неправильное сохранение в файл");
-        Assertions.assertEquals(strings.get(7), "7,SUBTASK,name,NEW,description,"+ LocalDateTime.now() +",PT0S,4",
+        Assertions.assertEquals(strings.get(7), "7,SUBTASK,name,NEW,description,"+ LocalDateTime.now().withNano(0) +",PT0S,4",
                 "Неправильное сохранение в файл");
-        Assertions.assertEquals(strings.get(10), "1,2,5,6,7,8,3,4", "Неправильное сохранение в файл");
+        Assertions.assertEquals(strings.get(10), "1,2,3,4,5,6,7,8", "Неправильное сохранение в файл");
     }
 
     @Test

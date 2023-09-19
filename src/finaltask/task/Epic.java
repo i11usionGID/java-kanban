@@ -7,32 +7,6 @@ import java.util.HashMap;
 
 public class Epic extends Task {
     private ArrayList<Integer> subTaskIds=new ArrayList<>();
-
-    @Override
-    public TaskType getType() {
-        return super.getType();
-    }
-
-    @Override
-    public Duration getDuration() {
-        return super.getDuration();
-    }
-
-    @Override
-    public void setDuration(Duration duration) {
-        super.setDuration(duration);
-    }
-
-    @Override
-    public LocalDateTime getStartTime() {
-        return super.getStartTime();
-    }
-
-    @Override
-    public void setStartTime(LocalDateTime startTime) {
-        super.setStartTime(startTime);
-    }
-
     public LocalDateTime getEndTime(ArrayList<SubTask> subTasks) {
         LocalDateTime max = startTime;
         for (SubTask subTask:subTasks) {

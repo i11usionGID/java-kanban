@@ -25,11 +25,23 @@ public class Main {
         LocalDateTime DateTime = LocalDateTime.of(2023, 9, 18, 10, 15);
         Duration duration = Duration.ZERO.plusMinutes(250);
 
-        Task task1 = new Task("задача 1", "описание 1-ой задачи", DateTime, duration);
-        Task task2 = new Task("задача 2", "описание 2-ой задачи", LocalDateTime.of(2023, 9, 18, 10, 18), Duration.ZERO.plusMinutes(250));
+        Task task1 = new Task("задача 1", "описание 1-ой задачи", LocalDateTime.of(2023, 9, 18, 10, 15), Duration.ZERO.plusMinutes(250));
+        Task task2 = new Task("задача 2", "описание 2-ой задачи", LocalDateTime.of(2021, 9, 18, 10, 18), Duration.ZERO.plusMinutes(250));
         manager1.createTask(task1);
         manager1.createTask(task2);
-/*
+        Task task3 = new Task("задача 1", "описание 1-ой задачи", LocalDateTime.of(2025, 9, 18, 10, 18), Duration.ZERO.plusMinutes(250));
+        Task task4 = new Task("задача 2", "описание 2-ой задачи", LocalDateTime.of(2025, 9, 18, 10, 18), Duration.ZERO.plusMinutes(250));
+        manager1.createTask(task3);
+        manager1.createTask(task4);
+        Epic epic = new Epic("name", "description");
+        manager1.createEpic(epic);
+        SubTask subTask1 = new SubTask("задача 1", "описание 1-ой задачи", 5, LocalDateTime.of(2027, 9, 18, 10, 18), Duration.ZERO.plusMinutes(250));
+        SubTask subTask2 = new SubTask("задача 1", "описание 1-ой задачи", 5, LocalDateTime.of(2018, 9, 18, 10, 18), Duration.ZERO.plusMinutes(250));
+        manager1.createSubTask(subTask1);
+        manager1.createSubTask(subTask2);
+        System.out.println(manager1.getPrioritizedTask());
+
+        /*
         subTaskForEpicTask11 = fileBackedTasksManager.createSubTask(subTaskForEpicTask11);
         subTaskForEpicTask12 = fileBackedTasksManager.createSubTask(subTaskForEpicTask12);
 
