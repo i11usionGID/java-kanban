@@ -29,4 +29,9 @@ public interface TaskManager {
     public void deleteEpicById(int epicId) throws ManagerSaveException;
     public List<SubTask> getAllSubTasksByEpic(int idOfEpic) throws ManagerSaveException;
     public List<Task> getHistory();
+    public boolean containTaskId(int id);
+    public boolean containSubTaskId(int id);
+    public boolean containEpicId(int id);
+    public List<Task> getPrioritizedTask();
+
 }

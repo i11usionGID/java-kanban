@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -29,10 +28,10 @@ class InMemoryTaskManagerTest extends TaskManagerTest<InMemoryTaskManager> {
         taskManager.createEpic(epicTask1);
         SubTask subTaskForEpicTask11 = new SubTask("подзадача 1 глобальной задачи 1",
                 "описание подзад. 1", epicTask1.getID(),
-                LocalDateTime.of(2021,12,20,10,0), Duration.ZERO.plusMinutes(240));
+                LocalDateTime.of(2021,12,20,10,0), 240);
         SubTask subTaskForEpicTask12 = new SubTask("подзадача 2 глобальной задачи 1",
                 "описание позад. 2", epicTask1.getID(),
-                LocalDateTime.of(2023,12,20,10,0), Duration.ZERO.plusMinutes(20));
+                LocalDateTime.of(2023,12,20,10,0), 20);
 
         taskManager.createSubTask(subTaskForEpicTask11);
         taskManager.createSubTask(subTaskForEpicTask12);
@@ -43,7 +42,7 @@ class InMemoryTaskManagerTest extends TaskManagerTest<InMemoryTaskManager> {
     @Test
     public void shouldBeEndTimeTask2021_12_20T14_00(){
         Task task = new Task("name", "description",
-                LocalDateTime.of(2021,12,20,10,0), Duration.ZERO.plusMinutes(240));
+                LocalDateTime.of(2021,12,20,10,0), 240);
         taskManager.createTask(task);
         Assertions.assertEquals(LocalDateTime.of(2021, 12,20,14,0),
                 task.getEndTime(), "неверный рассчет времени");
@@ -51,9 +50,9 @@ class InMemoryTaskManagerTest extends TaskManagerTest<InMemoryTaskManager> {
     @Test
     public void shouldBeTaskValidatorExeption(){
         Task task27 = new Task("задача 1", "описание 1-ой задачи",
-                LocalDateTime.of(2023, 9, 18, 10, 15), Duration.ZERO.plusMinutes(250));
+                LocalDateTime.of(2023, 9, 18, 10, 15), 250);
         Task task28 = new Task("задача 2", "описание 2-ой задачи",
-                LocalDateTime.of(2023, 9, 18, 10, 18), Duration.ZERO.plusMinutes(250));
+                LocalDateTime.of(2023, 9, 18, 10, 18), 250);
         TaskValidationExeption exeption = Assertions.assertThrows(
                 TaskValidationExeption.class,
                 ()->{

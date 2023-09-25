@@ -36,12 +36,12 @@ public class CSVFormatHandler {
         if(TaskType.valueOf(elements[1]).equals(TaskType.TASK)){
             Task task = new Task(elements[2], elements[4]);
             task.setStatus(TaskStatus.valueOf(elements[3]));
-            if(elements[5].equals("null") && elements[6].equals("null")) {
+            if(elements[5].equals("null") && elements[6].equals(0)) {
                 task.setStartTime(null);
-                task.setDuration(null);
+                task.setDuration(0);
             } else {
                 task.setStartTime(LocalDateTime.parse(elements[5]));
-                task.setDuration(Duration.parse(elements[6]));
+                task.setDuration(Integer.parseInt(elements[6]));
             }
             task.setID(Integer.parseInt(elements[0]));
             return task;
@@ -50,12 +50,12 @@ public class CSVFormatHandler {
 
             Epic epic = new Epic(elements[2], elements[4]);
             epic.setStatus(TaskStatus.valueOf(elements[3]));
-            if(elements[5].equals("null") && elements[6].equals("null")) {
+            if(elements[5].equals("null") && elements[6].equals("0")) {
                 epic.setStartTime(null);
-                epic.setDuration(null);
+                epic.setDuration(0);
             } else {
                 epic.setStartTime(LocalDateTime.parse(elements[5]));
-                epic.setDuration(Duration.parse(elements[6]));
+                epic.setDuration(Integer.parseInt(elements[6]));
             }
             epic.setID(Integer.parseInt(elements[0]));
             return epic;
@@ -64,12 +64,12 @@ public class CSVFormatHandler {
 
             SubTask subTask = new SubTask(elements[2], elements[4], Integer.parseInt(elements[7]));
             subTask.setStatus(TaskStatus.valueOf(elements[3]));
-            if(elements[5].equals("null") && elements[6].equals("null")) {
+            if(elements[5].equals("null") && elements[6].equals("0")) {
                 subTask.setStartTime(null);
-                subTask.setDuration(null);
+                subTask.setDuration(0);
             } else {
                 subTask.setStartTime(LocalDateTime.parse(elements[5]));
-                subTask.setDuration(Duration.parse(elements[6]));
+                subTask.setDuration(Integer.parseInt(elements[6]));
             }
             subTask.setID(Integer.parseInt(elements[0]));
             return subTask;

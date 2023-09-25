@@ -60,6 +60,11 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
     }
 
     @Override
+    public List<Task> getPrioritizedTask() {
+        return super.getPrioritizedTask();
+    }
+
+    @Override
     public void deleteSubTaskById(int id) {
         super.deleteSubTaskById(id);
         save();

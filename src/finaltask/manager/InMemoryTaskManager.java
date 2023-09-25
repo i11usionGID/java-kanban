@@ -239,9 +239,9 @@ public class InMemoryTaskManager implements TaskManager  {
                 return;
             }
         }
-        Duration epicDuration = Duration.ZERO;
+        int epicDuration = 0;
         for (Integer ids: subTasksId) {
-            epicDuration = epicDuration.plusMinutes((subTaskMap.get(ids).getDuration()).toMinutes());
+            epicDuration = epicDuration + subTaskMap.get(ids).getDuration();
         }
         epicMap.get(subTaskMap.get(subTasksId.get(0)).getEpicId()).setDuration(epicDuration);
 
@@ -273,6 +273,24 @@ public class InMemoryTaskManager implements TaskManager  {
         if(result>0){
             throw new TaskValidationExeption("Время выполнения пересекается с другой задачей!");
         }
+    }
+    public boolean containTaskId(int id){
+        if(taskMap.containsKey(id)){
+            return true;
+        }
+        return false;
+    }
+    public boolean containSubTaskId(int id){
+        if(subTaskMap.containsKey(id)){
+            return true;
+        }
+        return false;
+    }
+    public boolean containEpicId(int id){
+        if(epicMap.containsKey(id)){
+            return true;
+        }
+        return false;
     }
     public void putTasksInMaps(Task task, int id){
         validate(task);

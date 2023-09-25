@@ -1,23 +1,31 @@
 package finaltask.manager;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import finaltask.manager.file.FileBackedTasksManager;
+import finaltask.adapters.LocalDateTimeAdapter;
 
 import java.io.File;
-import java.nio.file.Paths;
+import java.time.LocalDateTime;
 
 public final class Managers {
 
     private Managers(){}
 
-    public static TaskManager getDefault(String file){
-        File taksFile = new File((Paths.get(file).toUri()));
-        return new FileBackedTasksManager(taksFile);
+    private static File file = new File("C:\\dev\\java-kanban\\src\\resources\\file.csv");
+    public static FileBackedTasksManager getFileDefault(){
+        return new FileBackedTasksManager(file);
     }
     public static TaskManager getDefault(){
          return new InMemoryTaskManager();
     }
     public static HistoryManager getHistoryDefault(){
         return new InMemoryHistoryManager();
+    }
+    public static Gson getGson(){
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter());
+        return gsonBuilder.create();
     }
 
 }
