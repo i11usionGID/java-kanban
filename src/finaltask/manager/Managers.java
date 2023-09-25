@@ -17,7 +17,7 @@ public final class Managers {
         return new FileBackedTasksManager(file);
     }
     public static TaskManager getDefault(){
-         return new InMemoryTaskManager();
+         return new HttpTaskManager(8080);
     }
     public static HistoryManager getHistoryDefault(){
         return new InMemoryHistoryManager();

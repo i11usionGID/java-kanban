@@ -16,7 +16,11 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
     private File file;
     private static CSVFormatHandler handler = new CSVFormatHandler();
     public FileBackedTasksManager(File file){
-        this.file = file;
+        if(file==null){
+            this.file = null;
+        }else {
+            this.file = file;
+        }
     }
     @Override
     public List<Task> getAllTasks(){

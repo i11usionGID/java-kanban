@@ -6,8 +6,6 @@ import finaltask.task.Epic;
 import finaltask.task.SubTask;
 import finaltask.task.Task;
 import finaltask.task.TaskType;
-
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -16,7 +14,7 @@ public class InMemoryTaskManager implements TaskManager  {
 
     protected HashMap<Integer, Task> taskMap = new HashMap<>();
     protected HashMap <Integer, Epic> epicMap = new HashMap<>();
-    protected HashMap <Integer, SubTask> subTaskMap = new HashMap<>();
+    protected static HashMap <Integer, SubTask> subTaskMap = new HashMap<>();
     protected  Map <LocalDateTime, Task> prioritizedTask = new TreeMap<>();
     protected final HistoryManager historyManager = Managers.getHistoryDefault();
 
