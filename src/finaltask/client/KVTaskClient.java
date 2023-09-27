@@ -17,8 +17,8 @@ public class KVTaskClient {
 
     public KVTaskClient(int port) {
         url = "http://localhost:" + port + "/";
-        tokenApi = register(url);
         client = HttpClient.newHttpClient();
+        tokenApi = register(url);
     }
 
     public String register(String url) {
